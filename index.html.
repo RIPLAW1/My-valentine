@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For My Princesa ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@400;500&display=swap');
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff0f3;
+            font-family: 'Quicksand', sans-serif;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+
+        .screen {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #fff0f3;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 25px;
+            z-index: 10;
+        }
+
+        .active { display: flex; }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff4d6d;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 120px;
+            width: 100%;
+            position: relative;
+            z-index: 100;
+        }
+
+        #yesBtn, .next-btn {
+            background: #ff4d6d;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
+            z-index: 101;
+        }
+
+        #noBtn {
+            background: white;
+            color: #ff8fa3;
+            padding: 12px 25px;
+            border-radius: 25px;
+            border: 1px solid #ffccd5;
+            position: absolute;
+            z-index: 101;
+        }
+
+        .calendar-action {
+            font-size: 1.1rem;
+            color: #ff4d6d;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-bottom: 30px;
+            font-weight: 500;
+            z-index: 101;
+        }
+
+        .letter-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(255, 179, 193, 0.3);
+            max-width: 350px;
+            line-height: 1.6;
+            color: #4a4a4a;
+            font-size: 1rem;
+            text-align: center;
+            border-top: 5px solid #ff4d6d;
+            z-index: 101;
+            overflow-y: auto;
+            max-height: 70vh;
+        }
+
+        .heart-float {
+            position: absolute;
+            color: #ffb3c1;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatUp 4s linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="page1" class="screen active">
+        <h1>Will you be my Valentine? ❤️</h1>
+        <div class="btn-wrap">
+            <button id="yesBtn" onclick="nextPage(2)">Yes!</button>
+            <button id="noBtn" onmouseover="dodge()" ontouchstart="dodge()">No</button>
+        </div>
+    </div>
+
+    <div id="page2" class="screen">
+        <h1>It's a date! ❤️</h1>
+        <p style="margin-bottom: 20px; color: #6d0a1e;">I can't wait to see you, baby.</p>
+        <div class="calendar-action" onclick="downloadAppleCalendar()">Set The Date</div>
+        <button class="next-btn" onclick="nextPage(3)">Date</button>
+    </div>
+
+    <div id="page3" class="screen">
+        <div class="letter-box">
+            <h2 style="font-family: 'Dancing Script', cursive; color: #ff4d6d; margin-top: 0;">Mi Amor,</h2>
+            I loveeee youuuu soooooooooo much more mi amor more than absolutely anything and anyone mi princesa! 
+            <br><br>
+            I want to make this day the most special day for you. I want to tell you I love you and give you a thousand kisses, and I promise I will baby.
+            <br><br>
+            I love you more than I will ever love anybody else in this world, planet, and universe. Genuinely, I’m the luckiest man on earth to have such an amazing girlfriend that’s so pretty and gorgeous as yourself, while at the same time being the sweetest, kindest, and most amazing person in the world. 
+            <br><br>
+            I love you with all my heart mi amor te amoo muchsisisimo muchisisimo! I can’t wait to see you baby.
+            <br><br>
+            <strong>Te amo — Diogo</strong>
+        </div>
+    </div>
+
+    <script>
+        function dodge() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth - 40);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight - 40);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function nextPage(num) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('page' + num).classList.add('active');
+        }
+
+        function downloadAppleCalendar() {
+            const icsData = [
+                "BEGIN:VCALENDAR",
+                "VERSION:2.0",
+                "BEGIN:VEVENT",
+                "X-APPLE-ALL-DAY:TRUE",
+                "DTSTART;VALUE=DATE:20260214",
+                "DTEND;VALUE=DATE:20260215",
+                "SUMMARY:Valentine's Day with Diogo ❤️",
+                "DESCRIPTION:The most special day with my favorite person.",
+                "LOCATION:With My Luckiest Man",
+                "END:VEVENT",
+                "END:VCALENDAR"
+            ].join("\n");
+
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'valentine.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.className = 'heart-float';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animation = `floatUp ${Math.random() * 2 + 3}s linear forwards`;
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }, 400);
+    </script>
+</body>
+</html>
+
