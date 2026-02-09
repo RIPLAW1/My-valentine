@@ -38,21 +38,23 @@
             font-family: 'Dancing Script', cursive;
             color: #ff4d6d;
             font-size: 2.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
+        /* BUTTON LAYOUT FIX */
         .btn-wrap {
             display: flex;
+            flex-direction: row;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            min-height: 120px;
+            gap: 50px; /* Forces a large gap between Yes and No */
             width: 100%;
+            min-height: 200px;
             position: relative;
             z-index: 100;
         }
 
-        #yesBtn, .next-btn {
+        #yesBtn {
             background: #ff4d6d;
             color: white;
             padding: 15px 40px;
@@ -62,7 +64,8 @@
             font-weight: 600;
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
-            z-index: 101;
+            position: relative;
+            z-index: 102;
         }
 
         #noBtn {
@@ -71,7 +74,8 @@
             padding: 12px 25px;
             border-radius: 25px;
             border: 1px solid #ffccd5;
-            position: absolute;
+            cursor: pointer;
+            position: relative; 
             z-index: 101;
         }
 
@@ -82,7 +86,17 @@
             cursor: pointer;
             margin-bottom: 30px;
             font-weight: 500;
-            z-index: 101;
+        }
+
+        .next-btn {
+            background: #ff4d6d;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
         }
 
         .letter-box {
@@ -96,9 +110,8 @@
             font-size: 1rem;
             text-align: center;
             border-top: 5px solid #ff4d6d;
-            z-index: 101;
             overflow-y: auto;
-            max-height: 70vh;
+            max-height: 75vh;
         }
 
         .heart-float {
@@ -150,9 +163,9 @@
     <script>
         function dodge() {
             const btn = document.getElementById('noBtn');
+            btn.style.position = 'fixed';
             const x = Math.random() * (window.innerWidth - btn.offsetWidth - 40);
             const y = Math.random() * (window.innerHeight - btn.offsetHeight - 40);
-            btn.style.position = 'fixed';
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
         }
@@ -181,7 +194,7 @@
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
-            link.setAttribute('download', 'valentine.ics');
+            link.setAttribute('download', 'date.ics');
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
